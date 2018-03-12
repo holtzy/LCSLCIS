@@ -3,8 +3,10 @@ LCSLCIS
 
 An R library to compute the longuest common sequences. It contains 2 functions: 
 
-- **LCS**
-- **LCIS**
+- **LCS**: Longest Common Sequence
+- **LCIS**: Longest Common I Sequence
+
+<br><br>
 
 ## Installation
 The LCSLCIS library is not on CRAN yet. However you can easily install it from this github repository:
