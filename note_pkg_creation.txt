@@ -25,13 +25,14 @@ Rcpp.package.skeleton(name = "LCSLCIS", list = character(),
 
 # —- Step 4: do the C++ -> R bindings:
 setwd(“./LCSLCIS”)
+library(Rcpp)
 compileAttributes()
 
 
 # —- Step 4 bis: add the show_connection function in the file R/show_connection.R, with the R oxygen documentation
 
 # —- Step: Add dependencies of the package: I need the tidyverse to realise the figures. At the end of the DESCRIPTION file, add:
-Depends: tidyverse
+Depends: tidyverse, ggrepel
 
 # —- Step 5: Create the doc with ROxygen2
 library(roxygen2)

@@ -2,38 +2,48 @@
 % Please edit documentation in R/RcppExports.R
 \name{LCIS}
 \alias{LCIS}
-\title{Return difference between two time zones at a given date.}
+\title{Longuest Common Induced qSequence (LCIS)}
 \usage{
 LCIS(order_1, order_2)
 }
 \arguments{
-\item{tzfrom}{The first time zone as a character vector.}
+\item{order_1}{the first list. Must be 2 columns called V1 and V2. V1 being the name
+of the item, V2 its position}
 
-\item{tzto}{The second time zone as a character vector.}
-
-\item{dt}{A Datetime object specifying when the difference is to be computed.}
-
-\item{verbose}{A boolean toggle indicating whether more verbose operations
-are desired, default is \code{FALSE}.}
+\item{order_2}{the second list. Must be 2 columns called V1 and V2. V1 being the name
+of the item, V2 its position}
 }
 \value{
-A numeric value with the difference (in hours) between the first and
-second time zone at the given date
+The function returns a list with several informations:
+		- $order_1: the first list
+		- $order_2: the second list
+		- $LLCIS: the number of items in the longuest common sequence
+		- $LCIS: the item names in the longuest common sequence
+		- $QSI: an estimate of the proportion of items kept in the LCS
+		- $LCIS_pos_order_1: the position of kept items in the first list
+		- $LCIS_pos_order_2: the position of kept items in the second list
 }
 \description{
-Difference between two given timezones at a specified date.
+Find the Longuest Common Induced Sequence (LCIS) between 2 lists.
 }
 \details{
-Time zone offsets vary by date, and this helper function computes
-the difference (in hours) between two time zones for a given date time.
+The LCS function takes 2 list of items and return the biggest subset of items
+showing the same order. If several items are at the same position, only one will
+be kept per position.
 }
 \examples{
-# simple call: difference now
-tzDiff("America/New_York", "Europe/London", Sys.time())
-# tabulate difference for every week of the year
-table(sapply(0:52, function(d) tzDiff("America/New_York", "Europe/London",
-
+# create 2 lists of items, each item having a position
+o1 <- data.frame( 
+   	V1=c("g","h","c","f","e","d","m","q","r","a","b","n","o","p"), 
+   	V2=c(1.1,1.1,3.4,3.4,3.4,3.4,3.5,3.5,6.6,6.6,7.2,7.2,8,8)
+   )
+o2 <- data.frame( 
+	V1=c("k","a","b","l","c","e","d","f","i","j","h","g"), 
+   	V2=c(0.1,1.2,1.2,4.2,4.2,5,5,5,5.3,5.3,6.7,6.7)
+   )
+# run LCS
+LCIS(o1, o2)
 }
 \author{
-Dirk Eddelbuettel
+Lisa de Matteo
 }

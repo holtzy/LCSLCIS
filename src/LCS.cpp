@@ -168,30 +168,38 @@ std::vector<std::vector<std::string> > Homogeneization(std::vector<std::vector<s
 
 }
 
-//' Longuest Common Sequence
+//' Find the Longuest Common Sequence (LCS) between 2 lists.
 //'
-//' This function takes 2 lists and find the biggest subset of the items that 
-//' are in the same order
+//' The LCS function takes 2 list of items and return the biggest subset of items
+//' showing the same order. If several items are at the same position, all of them
+//' will be returned.
 //'
-//' @title find the Longuest Common Sequence between 2 lists
-//' @param o1 the first list. Must be 2 columns called V1 and V2. V1 being the name
+//' @title Longuest Common Sequence (LCS)
+//' @param order_1 the first list. Must be 2 columns called V1 and V2. V1 being the name
 //' of the item, V2 its position
-//' @param o2 the second list. Must be 2 columns called V1 and V2. V1 being the name
+//' @param order_2 the second list. Must be 2 columns called V1 and V2. V1 being the name
 //' of the item, V2 its position
-//' @return a list with several informations.
-//' @author toto
+//' @return The function returns a list with several informations:
+//'			- $order_1: the first list
+//'			- $order_2: the second list
+//'			- $LLCS: the number of items in the longuest common sequence
+//'			- $LCS: the item names in the longuest common sequence
+//'			- $QSI: an estimate of the proportion of items kept in the LCS
+//'			- $LCS_pos_order_1: the position of kept items in the first list
+//'			- $LCS_pos_order_2: the position of kept items in the second list
+//' @author Lisa de Matteo
 //' @examples
-//' # Create 2 lists and find the longuest common sequence:
+//' # create 2 lists of items, each item having a position
 //' o1 <- data.frame( 
-//'    V1=c("g","h","c","f","e","d","m","q","r","a","b","n","o","p"), 
-//'    V2=c(1.1,1.1,3.4,3.4,3.4,3.4,3.5,3.5,6.6,6.6,7.2,7.2,8,8)
+//'    	V1=c("g","h","c","f","e","d","m","q","r","a","b","n","o","p"), 
+//'    	V2=c(1.1,1.1,3.4,3.4,3.4,3.4,3.5,3.5,6.6,6.6,7.2,7.2,8,8)
 //'    )
 //' o2 <- data.frame( 
-//'    V1=c("k","a","b","l","c","e","d","f","i","j","h","g"), 
-//'    V2=c(0.1,1.2,1.2,4.2,4.2,5,5,5,5.3,5.3,6.7,6.7)
+//'		V1=c("k","a","b","l","c","e","d","f","i","j","h","g"), 
+//'    	V2=c(0.1,1.2,1.2,4.2,4.2,5,5,5,5.3,5.3,6.7,6.7)
 //'    )
-//' LCS(o1,o2)
-//'
+//' # run LCS
+//' LCS(o1, o2)
 // [[Rcpp::export]]
 List LCS(DataFrame order_1, DataFrame order_2){
 
@@ -429,26 +437,41 @@ void bucketCode(std::vector<std::vector<std::string> > oh1, std::vector<std::vec
 	std::cout << "-- end running bucketCode" << std::endl;
 }
 
-//' Difference between two given timezones at a specified date.
+
+
+
+//' Find the Longuest Common Induced Sequence (LCIS) between 2 lists.
 //'
-//' Time zone offsets vary by date, and this helper function computes
-//' the difference (in hours) between two time zones for a given date time.
+//' The LCS function takes 2 list of items and return the biggest subset of items
+//' showing the same order. If several items are at the same position, only one will
+//' be kept per position.
 //'
-//' @title Return difference between two time zones at a given date.
-//' @param tzfrom The first time zone as a character vector.
-//' @param tzto The second time zone as a character vector.
-//' @param dt A Datetime object specifying when the difference is to be computed.
-//' @param verbose A boolean toggle indicating whether more verbose operations
-//' are desired, default is \code{FALSE}.
-//' @return A numeric value with the difference (in hours) between the first and
-//' second time zone at the given date
-//' @author Dirk Eddelbuettel
+//' @title Longuest Common Induced qSequence (LCIS)
+//' @param order_1 the first list. Must be 2 columns called V1 and V2. V1 being the name
+//' of the item, V2 its position
+//' @param order_2 the second list. Must be 2 columns called V1 and V2. V1 being the name
+//' of the item, V2 its position
+//' @return The function returns a list with several informations:
+//'			- $order_1: the first list
+//'			- $order_2: the second list
+//'			- $LLCIS: the number of items in the longuest common sequence
+//'			- $LCIS: the item names in the longuest common sequence
+//'			- $QSI: an estimate of the proportion of items kept in the LCS
+//'			- $LCIS_pos_order_1: the position of kept items in the first list
+//'			- $LCIS_pos_order_2: the position of kept items in the second list
+//' @author Lisa de Matteo
 //' @examples
-//' # simple call: difference now
-//' tzDiff("America/New_York", "Europe/London", Sys.time())
-//' # tabulate difference for every week of the year
-//' table(sapply(0:52, function(d) tzDiff("America/New_York", "Europe/London",
-//' 
+//' # create 2 lists of items, each item having a position
+//' o1 <- data.frame( 
+//'    	V1=c("g","h","c","f","e","d","m","q","r","a","b","n","o","p"), 
+//'    	V2=c(1.1,1.1,3.4,3.4,3.4,3.4,3.5,3.5,6.6,6.6,7.2,7.2,8,8)
+//'    )
+//' o2 <- data.frame( 
+//'		V1=c("k","a","b","l","c","e","d","f","i","j","h","g"), 
+//'    	V2=c(0.1,1.2,1.2,4.2,4.2,5,5,5,5.3,5.3,6.7,6.7)
+//'    )
+//' # run LCS
+//' LCIS(o1, o2)
 // [[Rcpp::export]]
 List LCIS(DataFrame order_1, DataFrame order_2){
 	// It supposes that order_1 and order_2 are homogeneized

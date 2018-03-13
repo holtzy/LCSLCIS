@@ -1,11 +1,32 @@
-#' A Cat Function
+#' A function to draw the relationship between 2 lists
 #'
-#' This function allows you to express your love of cats.
-#' @param love Do you love cats? Defaults to TRUE.
-#' @keywords cats
+#' This function takes 2 lists o1 and o2 and build a diagram showing the relationship between every items.
+#' @param o1 the first list. Must be 2 columns called V1 and V2. V1 being the name
+#' of the item, V2 its position
+#' @param o2 the second list. Must be 2 columns called V1 and V2. V1 being the name
+#' of the item, V2 its position
+#' @param tokeep a vector of item to keep on the graphic. All item not present in this list
+#' will be discarded. By default, all markers are kept.
+#' @keywords plot connection list
+#' @author Lisa de Matteo
 #' @export
 #' @examples
-#' cat_function()
+#' # Create 2 lists
+#' o1 <- data.frame( 
+#'    V1=c("g","h","c","f","e","d","m","q","r","a","b","n","o","p"), 
+#'    V2=c(1.1,1.1,3.4,3.4,3.4,3.4,3.5,3.5,6.6,6.6,7.2,7.2,8,8)
+#'    )
+#' o2 <- data.frame( 
+#'    V1=c("k","a","b","l","c","e","d","f","i","j","h","g"), 
+#'    V2=c(0.1,1.2,1.2,4.2,4.2,5,5,5,5.3,5.3,6.7,6.7)
+#'    )
+#'
+#' # show the connection between all items
+#' show_connection(o1,o2)
+#'
+#' # Run LCS and plot only the remaining markers
+#' res <- LCS(o1,o2)
+#' show_connection(o1, o2, tokeep=res$LCS)
 
 # A function that plot the relationship between 2 lists:
 show_connection <- function(o1, o2, tokeep=NA){
