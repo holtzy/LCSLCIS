@@ -22,12 +22,13 @@ Maintainer: Lisa de Mattéo <dematteo@openmailbox.org>
   This optional section can contain literature or other references for
   background information.
 }
-% Optionally other standard keywords, one per line,
-% from the file KEYWORDS in the R documentation.
 \keyword{ package }
 \seealso{
   Optional links to other man pages
 }
 \examples{
-  # Optional simple examples of the most important functions
+  \dontrun{
+     ## Optional simple examples of the most important functions
+     ## These can be in \dontrun{} and \donttest{} blocks.   
+  }
 }

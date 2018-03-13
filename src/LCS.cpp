@@ -168,6 +168,26 @@ std::vector<std::vector<std::string> > Homogeneization(std::vector<std::vector<s
 
 }
 
+//' Difference between two given timezones at a specified date.
+//'
+//' Time zone offsets vary by date, and this helper function computes
+//' the difference (in hours) between two time zones for a given date time.
+//'
+//' @title Return difference between two time zones at a given date.
+//' @param tzfrom The first time zone as a character vector.
+//' @param tzto The second time zone as a character vector.
+//' @param dt A Datetime object specifying when the difference is to be computed.
+//' @param verbose A boolean toggle indicating whether more verbose operations
+//' are desired, default is \code{FALSE}.
+//' @return A numeric value with the difference (in hours) between the first and
+//' second time zone at the given date
+//' @author Dirk Eddelbuettel
+//' @examples
+//' # simple call: difference now
+//' tzDiff("America/New_York", "Europe/London", Sys.time())
+//' # tabulate difference for every week of the year
+//' table(sapply(0:52, function(d) tzDiff("America/New_York", "Europe/London",
+//' 
 // [[Rcpp::export]]
 List LCS(DataFrame order_1, DataFrame order_2){
 
@@ -405,6 +425,26 @@ void bucketCode(std::vector<std::vector<std::string> > oh1, std::vector<std::vec
 	std::cout << "-- end running bucketCode" << std::endl;
 }
 
+//' Difference between two given timezones at a specified date.
+//'
+//' Time zone offsets vary by date, and this helper function computes
+//' the difference (in hours) between two time zones for a given date time.
+//'
+//' @title Return difference between two time zones at a given date.
+//' @param tzfrom The first time zone as a character vector.
+//' @param tzto The second time zone as a character vector.
+//' @param dt A Datetime object specifying when the difference is to be computed.
+//' @param verbose A boolean toggle indicating whether more verbose operations
+//' are desired, default is \code{FALSE}.
+//' @return A numeric value with the difference (in hours) between the first and
+//' second time zone at the given date
+//' @author Dirk Eddelbuettel
+//' @examples
+//' # simple call: difference now
+//' tzDiff("America/New_York", "Europe/London", Sys.time())
+//' # tabulate difference for every week of the year
+//' table(sapply(0:52, function(d) tzDiff("America/New_York", "Europe/London",
+//' 
 // [[Rcpp::export]]
 List LCIS(DataFrame order_1, DataFrame order_2){
 	// It supposes that order_1 and order_2 are homogeneized

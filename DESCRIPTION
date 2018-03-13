@@ -1,13 +1,14 @@
 Package: LCSLCIS
 Type: Package
-Title: What the package does (short line)
+Title: What the Package Does in One 'Title Case' Line
 Version: 1.0
-Date: 2017-11-21
-Author: Lisa de Matt<c3><a9>o
-Maintainer: Lisa de Matt<c3><a9>o <dematteo@openmailbox.org>
-Description: More about what it does (maybe more than one line)
+Date: 2018-03-13
+Author: Lisa de Mattéo
+Maintainer: Lisa de Mattéo <dematteo@openmailbox.org>
+Description: One paragraph description of what the package does as one
+        or more full sentences.
 License: GPL (>= 2)
-Imports: Rcpp (>= 0.12.3)
+Imports: Rcpp (>= 0.12.15)
 LinkingTo: Rcpp
-NeedsCompilation: yes
-Packaged: 2017-11-21 14:10:34 UTC; berard
+RoxygenNote: 6.0.1.9000
+Depends: tidyverse
