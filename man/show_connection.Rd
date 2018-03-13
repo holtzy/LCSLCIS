@@ -4,7 +4,7 @@
 \alias{show_connection}
 \title{A function to draw the relationship between 2 lists}
 \usage{
-show_connection(o1, o2, tokeep = NA)
+show_connection(o1, o2, tokeep = NA, showName = TRUE)
 }
 \arguments{
 \item{o1}{the first list. Must be 2 columns called V1 and V2. V1 being the name
@@ -15,6 +15,9 @@ of the item, V2 its position}
 
 \item{tokeep}{a vector of item to keep on the graphic. All item not present in this list
 will be discarded. By default, all markers are kept.}
+
+\item{showName}{wether or not you want to show item names on the graphic.If you're working
+with a huge number of item, you probably don't want to show them}
 }
 \description{
 This function takes 2 lists o1 and o2 and build a diagram showing the relationship between every items.

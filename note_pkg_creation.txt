@@ -36,7 +36,7 @@ Depends: tidyverse, ggrepel
 
 # —- Step 5: Create the doc with ROxygen2
 library(roxygen2)
-roxygenize(".", roclets="rd")
+roxygenize()
 
 # —- Step 6: Install the package:
 library(devtools)
@@ -48,15 +48,62 @@ library(LCSLCIS)
 help(LCS)
 help(show_connection)
 
-# —- Step Add badges
-library(badgecreatr)
-badgeplacer( githubaccount = "holtzy",githubrepo = "LCSLCIS", branch = "master")
 
 # —- Step 8: Send it on GitHub, the library is ready
 
 # —- Step 9:
 	- add the readme, it replaces the vignette.
 	- delete useless files.
+
+# -- Step X: Add data
+# create a data folder
+# copy 2 maps from the genetic map comparator
+# Load them and save them as an R object
+map1=read.table("physical_position", header=TRUE)
+colnames(map1) <- c("V0", "V1", "V2")
+map1$V2 = map1$V2/max(map1$V2) * 100
+map1$V1 = as.character(map1$V1)
+map2=read.table("map_DL", header=TRUE)
+colnames(map2) <- c("V0", "V1", "V2")
+map2$V2 = map2$V2/max(map2$V2) * 100
+map2$V1 = as.character(map2$V1)
+save(map1, map2, file="geneticMap.RData")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+library(LCSLCIS)
+load("geneticMap.RData")
+o1 <- map1 %>% filter(V0=="1A") %>% select(V1, V2) %>% arrange(V2)
+o2 <- map2 %>% filter(V0=="1A") %>% select(V1, V2) %>% arrange(V2)
+
+show_connection(o1, o2, showName=FALSE)
+
+res <- LCIS(o1,o2)
+show_connection(o1, o2, tokeep=res$LCIS, showName=FALSE)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
