@@ -49,6 +49,7 @@ help(show_connection)
 
 # —- Step Add badges
 library(badgecreatr)
+badgeplacer( githubaccount = "holtzy",githubrepo = "LCSLCIS", branch = "master")
 
 # —- Step 8: Send it on GitHub, the library is ready
 

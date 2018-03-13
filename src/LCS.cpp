@@ -179,7 +179,7 @@ std::vector<std::vector<std::string> > Homogeneization(std::vector<std::vector<s
 //' @param o2 the second list. Must be 2 columns called V1 and V2. V1 being the name
 //' of the item, V2 its position
 //' @return a list with several informations.
-//' @author Dirk Eddelbuettel
+//' @author toto
 //' @examples
 //' # Create 2 lists and find the longuest common sequence:
 //' o1 <- data.frame( 
