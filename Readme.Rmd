@@ -23,7 +23,7 @@ An R library to compute the longuest common sequences. It contains 2 functions:
 
 ## Installation
 The LCSLCIS library is not on CRAN yet. However you can easily install it from this github repository:
-```
+```{r}
 #install.packages("devtools")
 library(devtools) 
 install_github("holtzy/LCSLCIS")
@@ -32,10 +32,10 @@ library(LCSLCIS)
 
 
 
-## Example
+## Basic example
 Let's consider 2 lists of elements. Each element has a specific position in each list. We can build such a dataset and represent it in the following diagram:  
 
-```
+```{r}
 o1 <- data.frame( 
 	V1=c("g","h","c","f","e","d","m","q","r","a","b","n","o","p"), 
 	V2=c(1.1,1.1,3.4,3.4,3.4,3.4,3.5,3.5,6.6,6.6,7.2,7.2,8,8)
@@ -47,7 +47,7 @@ o2 <- data.frame(
 ```
 
 The library provides a function that allows to visualize the relationship between these 2 lists.
-```
+```{r}
 show_connection(o1, o2)
 ```
 <img align="center" src="img/fig1.png">
@@ -55,7 +55,7 @@ show_connection(o1, o2)
 
 We can now try to find the biggest set of elements without having any mismatch in their order. This can be done using the `LCS` or the `LCIS` function. Here is an example using LCS:
 
-```
+```{r}
 # run the LCS function
 res <- LCS(o1,o2)
 
@@ -70,6 +70,35 @@ show_connection(o1, o2, tokeep=res$LCS)
 ```
 
 <img align="center" src="img/fig2.png">
+
+## Applying to genetic maps
+The LCSLCIS library provide 2 genetic maps of wheat as toy example. Load it with:
+```{r}
+data(geneticMap)
+```
+
+You can have a look to this 2 genetic maps doing:
+```{r, eval=FALSE}
+head(map1)
+head(map2)
+```
+
+We need to reformat this map to have an expected input: 2 columns called V1 (item name) and V2 (item position)
+```{r}
+o1 <- map1 %>% filter(V0=="1A") %>% select(V1, V2) %>% arrange(V2)
+o2 <- map2 %>% filter(V0=="1A") %>% select(V1, V2) %>% arrange(V2)
+```
+
+Let's have a look to the common items relationship:
+```{r}
+show_connection(o1, o2, showName=FALSE)
+```
+
+Let's run LCIS to keep a subset of markers with no crossing:
+```{r}
+res <- LCIS(o1,o2)
+show_connection(o1, o2, tokeep=res$LCIS, showName=FALSE)
+```
 
 
 ## Citing
