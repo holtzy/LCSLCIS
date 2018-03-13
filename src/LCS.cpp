@@ -168,26 +168,30 @@ std::vector<std::vector<std::string> > Homogeneization(std::vector<std::vector<s
 
 }
 
-//' Difference between two given timezones at a specified date.
+//' Longuest Common Sequence
 //'
-//' Time zone offsets vary by date, and this helper function computes
-//' the difference (in hours) between two time zones for a given date time.
+//' This function takes 2 lists and find the biggest subset of the items that 
+//' are in the same order
 //'
-//' @title Return difference between two time zones at a given date.
-//' @param tzfrom The first time zone as a character vector.
-//' @param tzto The second time zone as a character vector.
-//' @param dt A Datetime object specifying when the difference is to be computed.
-//' @param verbose A boolean toggle indicating whether more verbose operations
-//' are desired, default is \code{FALSE}.
-//' @return A numeric value with the difference (in hours) between the first and
-//' second time zone at the given date
+//' @title find the Longuest Common Sequence between 2 lists
+//' @param o1 the first list. Must be 2 columns called V1 and V2. V1 being the name
+//' of the item, V2 its position
+//' @param o2 the second list. Must be 2 columns called V1 and V2. V1 being the name
+//' of the item, V2 its position
+//' @return a list with several informations.
 //' @author Dirk Eddelbuettel
 //' @examples
-//' # simple call: difference now
-//' tzDiff("America/New_York", "Europe/London", Sys.time())
-//' # tabulate difference for every week of the year
-//' table(sapply(0:52, function(d) tzDiff("America/New_York", "Europe/London",
-//' 
+//' # Create 2 lists and find the longuest common sequence:
+//' o1 <- data.frame( 
+//'    V1=c("g","h","c","f","e","d","m","q","r","a","b","n","o","p"), 
+//'    V2=c(1.1,1.1,3.4,3.4,3.4,3.4,3.5,3.5,6.6,6.6,7.2,7.2,8,8)
+//'    )
+//' o2 <- data.frame( 
+//'    V1=c("k","a","b","l","c","e","d","f","i","j","h","g"), 
+//'    V2=c(0.1,1.2,1.2,4.2,4.2,5,5,5,5.3,5.3,6.7,6.7)
+//'    )
+//' LCS(o1,o2)
+//'
 // [[Rcpp::export]]
 List LCS(DataFrame order_1, DataFrame order_2){
 
