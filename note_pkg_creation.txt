@@ -40,12 +40,15 @@ roxygenize(".", roclets="rd")
 # —- Step 6: Install the package:
 library(devtools)
 setwd("..")
-install(“LCSLCIS”)
+install("LCSLCIS")
 
 # —- Step 7: Test the library
 library(LCSLCIS)
 help(LCS)
 help(show_connection)
+
+# —- Step Add badges
+library(badgecreatr)
 
 # —- Step 8: Send it on GitHub, the library is ready
 
