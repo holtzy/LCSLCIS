@@ -50,7 +50,6 @@ The library provides a function that allows to visualize the relationship betwee
 ```{r}
 show_connection(o1, o2)
 ```
-<img align="center" src="img/fig1.png">
 
 
 We can now try to find the biggest set of elements without having any mismatch in their order. This can be done using the `LCS` or the `LCIS` function. Here is an example using LCS:
@@ -69,7 +68,6 @@ res$LCS
 show_connection(o1, o2, tokeep=res$LCS)
 ```
 
-<img align="center" src="img/fig2.png">
 
 ## Applying to genetic maps
 The LCSLCIS library provide 2 genetic maps of wheat as toy example. Load it with:
