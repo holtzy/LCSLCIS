@@ -4,20 +4,22 @@
 LCSLCIS
 -------
 
-An R library to compute the longuest common subsequences. It contains 2 functions:
+An R library to compute the Longuest Common Subsequence between 2 lists of items.
 
--   **LCS**: Longest Common Subequence
--   **LCIS**: Longest Common Induced Subsequence
+Abstract
+--------
+
+Genetic maps order genetic markers along chromosomes. They are, for instance, extensively used in marker-assisted selection to accelerate breeding program. Even for the same species, people often have to deal with several alternative maps obtained using différent ordering methods or différent dataset, e.g. resulting from différent segregating populations. Having efficient tools to identify the consistency and discrepancy of alternative maps is thus essential to facilitate genetic map comparisons.
+We propose to encode genetic maps by bucket order, a kind of order, which takes into account the blur parts of the marker order while being an efficient data structure to achieve low complexity algorithms. We identify the **Longest Common Subsequences** of bucket orders to produce a strict consensus genetic map. The main result of this paper is an O(nlog(n)) procedure to identify the largest agreements between two bucket orders of n elements, hence providing an efficient solution to highlight discrepancies between two genetic maps.
 
 <br><br>
 
 Installation
 ------------
 
-The LCSLCIS library is not on CRAN yet. However you can easily install it from this github repository:
+The LCSLCIS library is not on CRAN. However you can install it from this github repository:
 
 ``` r
-#install.packages("devtools")
 library(devtools) 
 install_github("holtzy/LCSLCIS")
 library(LCSLCIS)
@@ -26,7 +28,7 @@ library(LCSLCIS)
 Basic example
 -------------
 
-Let's consider 2 lists of elements. Each element has a specific position in each list. We can build such a dataset and represent it in the following diagram:
+Let's consider 2 lists of items o1 and o2. Each item has a specific position in each list. Several items can have the same position.
 
 ``` r
 o1 <- data.frame( 
@@ -39,7 +41,7 @@ o2 <- data.frame(
     )
 ```
 
-The library provides a function that allows to visualize the relationship between these 2 lists.
+The LCSLCIS package provides a `show_connection` function that allows to visualize the relationship between these 2 lists:
 
 ``` r
 show_connection(o1, o2)
@@ -47,31 +49,37 @@ show_connection(o1, o2)
 
 ![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
-We can now try to find the biggest set of elements without having any mismatch in their order. This can be done using the `LCS` or the `LCIS` function. Here is an example using LCS:
+We can find the Longest Common Subsequences (LCS) of bucket orders to produce a strict consensus list. This is done running the `LCS` function of the package:
 
 ``` r
-# run the LCS function
 res <- LCS(o1,o2)
+```
 
-# The number of elements we can keep without order mismatch is 
+The `LCS` function returns a list. Several outputs are of interest:
+
+-   `res$LLCS` is the number of items in the LCS:
+
+``` r
 res$LLCS
 ```
 
     ## [1] 4
 
+-   `res$LCS` provides the items of the LCS:
+
 ``` r
-# The elements we can keep are:
 res$LCS
 ```
 
     ## [1] "c" "d" "e" "f"
 
+-   It is straigth forward to plot only the items of the LCS:
+
 ``` r
-# We can represent that on the diagram:
 show_connection(o1, o2, tokeep=res$LCS)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 Applying to genetic maps
 ------------------------
@@ -102,7 +110,7 @@ Let's have a look to the common items relationship:
 show_connection(o1, o2, showName=FALSE)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
 Let's run LCIS to keep a subset of markers with no crossing:
 
@@ -111,7 +119,7 @@ res <- LCIS(o1,o2)
 show_connection(o1, o2, tokeep=res$LCIS, showName=FALSE)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
 Citing
 ------
