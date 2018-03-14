@@ -14,16 +14,16 @@ output:
 LCSLCIS
 --------
 
-An R library to compute the longuest common sequences. It contains 2 functions: 
+An R library to compute the longuest common subsequences. It contains 2 functions: 
 
-- **LCS**: Longest Common Sequence
-- **LCIS**: Longest Common I Sequence
+- **LCS**: Longest Common Subequence
+- **LCIS**: Longest Common Induced Subsequence
 
 <br><br>
 
 ## Installation
 The LCSLCIS library is not on CRAN yet. However you can easily install it from this github repository:
-```{r}
+```{r, warning=FALSE, message=FALSE}
 #install.packages("devtools")
 library(devtools) 
 install_github("holtzy/LCSLCIS")
@@ -50,7 +50,6 @@ The library provides a function that allows to visualize the relationship betwee
 ```{r}
 show_connection(o1, o2)
 ```
-
 
 We can now try to find the biggest set of elements without having any mismatch in their order. This can be done using the `LCS` or the `LCIS` function. Here is an example using LCS:
 
@@ -101,15 +100,16 @@ show_connection(o1, o2, tokeep=res$LCIS, showName=FALSE)
 
 ## Citing
 
-If you find LCSLCSI useful, please cite:  
-in press.
-
+If you find LCSLCSI useful, please cite: 
+*Longest Common Subsequence of Bucket Order: Application to Genetic Map Comparison (In Press)*
 
 
 ## Authors
 
+Lisa De Mattéo: [linkedin](https://www.linkedin.com/in/lisadematteo/)
 Vincent Ranwez: [homepage](https://sites.google.com/site/ranwez/)
-Other:
+Sèverine Bérard: [homepage](http://www.pages-perso-severine-berard.univ-montp2.fr)
+
 
 
 
