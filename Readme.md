@@ -6,13 +6,15 @@ LCSLCIS
 
 An R library to compute the Longuest Common Subsequence between 2 lists of items.
 
+<br>
+
 Abstract
 --------
 
 Genetic maps order genetic markers along chromosomes. They are, for instance, extensively used in marker-assisted selection to accelerate breeding program. Even for the same species, people often have to deal with several alternative maps obtained using différent ordering methods or différent dataset, e.g. resulting from différent segregating populations. Having efficient tools to identify the consistency and discrepancy of alternative maps is thus essential to facilitate genetic map comparisons.
-We propose to encode genetic maps by bucket order, a kind of order, which takes into account the blur parts of the marker order while being an efficient data structure to achieve low complexity algorithms. We identify the **Longest Common Subsequences** of bucket orders to produce a strict consensus genetic map. The main result of this paper is an O(nlog(n)) procedure to identify the largest agreements between two bucket orders of n elements, hence providing an efficient solution to highlight discrepancies between two genetic maps.
+<br> We propose to encode genetic maps by bucket order, a kind of order, which takes into account the blur parts of the marker order while being an efficient data structure to achieve low complexity algorithms. We identify the **Longest Common Subsequences** of bucket orders to produce a strict consensus genetic map. The main result of this paper is an O(nlog(n)) procedure to identify the largest agreements between two bucket orders of n elements, hence providing an efficient solution to highlight discrepancies between two genetic maps.
 
-<br><br>
+<br>
 
 Installation
 ------------
@@ -25,10 +27,12 @@ install_github("holtzy/LCSLCIS")
 library(LCSLCIS)
 ```
 
+<br>
+
 Basic example
 -------------
 
-Let's consider 2 lists of items o1 and o2. Each item has a specific position in each list. Several items can have the same position.
+Let's consider 2 lists of items: o1 and o2. Each item has a specific position in each list. Several items can have the same position.
 
 ``` r
 o1 <- data.frame( 
@@ -81,10 +85,12 @@ show_connection(o1, o2, tokeep=res$LCS)
 
 ![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
+<br>
+
 Applying to genetic maps
 ------------------------
 
-The LCSLCIS library provide 2 genetic maps of wheat as toy example. Load it with:
+The LCSLCIS library provides 2 genetic maps of wheat as toy example. Load it with:
 
 ``` r
 data(geneticMap)
@@ -97,7 +103,7 @@ head(map1)
 head(map2)
 ```
 
-We need to reformat this map to have an expected input: 2 columns called V1 (item name) and V2 (item position)
+We need to reformat these maps to have an expected input: 2 columns called V1 (item name) and V2 (item position)
 
 ``` r
 o1 <- map1 %>% filter(V0=="1A") %>% select(V1, V2) %>% arrange(V2)
@@ -112,7 +118,7 @@ show_connection(o1, o2, showName=FALSE)
 
 ![](README_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
-Let's run LCIS to keep a subset of markers with no crossing:
+Let's run LCIS to keep a subset of markers with no discrepencies:
 
 ``` r
 res <- LCIS(o1,o2)
@@ -124,9 +130,12 @@ show_connection(o1, o2, tokeep=res$LCIS, showName=FALSE)
 Citing
 ------
 
-If you find LCSLCSI useful, please cite: *Longest Common Subsequence of Bucket Order: Application to Genetic Map Comparison (In Press)*
+If you find LCSLCSI useful, please cite:
+*Longest Common Subsequence of Bucket Order: Application to Genetic Map Comparison (In Press)*
 
 Authors
 -------
 
-Lisa De Mattéo: [linkedin](https://www.linkedin.com/in/lisadematteo/) Vincent Ranwez: [homepage](https://sites.google.com/site/ranwez/) Sèverine Bérard: [homepage](http://www.pages-perso-severine-berard.univ-montp2.fr)
+Lisa De Mattéo: [linkedin](https://www.linkedin.com/in/lisadematteo/)
+Vincent Ranwez: [homepage](https://sites.google.com/site/ranwez/)
+Sèverine Bérard: [homepage](http://www.pages-perso-severine-berard.univ-montp2.fr)
