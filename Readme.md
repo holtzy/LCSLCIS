@@ -1,5 +1,5 @@
 [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.2.4-6666ff.svg)](https://cran.r-project.org/) [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/develop) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--14-yellowgreen.svg)](/commits/master)
+[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.2.4-6666ff.svg)](https://cran.r-project.org/) [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/develop) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--15-yellowgreen.svg)](/commits/master)
 
 LCSLCIS
 -------
@@ -32,7 +32,7 @@ library(LCSLCIS)
 Basic example
 -------------
 
-Let's consider 2 lists of items: o1 and o2. Each item has a specific position in each list. Several items can have the same position.
+We represent marker order along a chromosome by two lists, the first list provides the marker names and the second their position along the chromosome. Let’s consider two marker orders o1 and o2
 
 ``` r
 o1 <- data.frame( 
@@ -48,6 +48,39 @@ o2 <- data.frame(
 The LCSLCIS package provides a `show_connection` function that allows to visualize the relationship between these 2 lists:
 
 ``` r
+library(tidyverse)
+```
+
+    ## Warning: package 'tidyverse' was built under R version 3.4.2
+
+    ## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
+
+    ## ✔ ggplot2 2.2.1.9000     ✔ purrr   0.2.4     
+    ## ✔ tibble  1.4.2          ✔ dplyr   0.7.4     
+    ## ✔ tidyr   0.7.2          ✔ stringr 1.3.0     
+    ## ✔ readr   1.1.1          ✔ forcats 0.2.0
+
+    ## Warning: package 'tibble' was built under R version 3.4.3
+
+    ## Warning: package 'tidyr' was built under R version 3.4.2
+
+    ## Warning: package 'purrr' was built under R version 3.4.2
+
+    ## Warning: package 'dplyr' was built under R version 3.4.2
+
+    ## Warning: package 'stringr' was built under R version 3.4.3
+
+    ## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
+
+``` r
+library(ggrepel)
+```
+
+    ## Warning: package 'ggrepel' was built under R version 3.4.2
+
+``` r
 show_connection(o1, o2)
 ```
 
@@ -61,7 +94,7 @@ res <- LCS(o1,o2)
 
 The `LCS` function returns a list. Several outputs are of interest:
 
--   `res$LLCS` is the number of items in the LCS:
+-   `res$LLCS` is the length of the returned LCS
 
 ``` r
 res$LLCS
@@ -85,12 +118,23 @@ show_connection(o1, o2, tokeep=res$LCS)
 
 ![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
+-   You can also draw items that are part of the LCS in grey, and other in red:
+
+``` r
+show_connection(o1, o2, highlight =res$LCS)
+```
+
+    ## Warning in if (!is.na(highlight)) {: the condition has length > 1 and only
+    ## the first element will be used
+
+![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
+
 <br>
 
 Applying to genetic maps
 ------------------------
 
-The LCSLCIS library provides 2 genetic maps of wheat as toy example. Load it with:
+The LCSLCIS library provides 2 genetic maps of wheat (format chromosome, marker name, position) as toy example. Load THEM using:
 
 ``` r
 data(geneticMap)
@@ -103,7 +147,7 @@ head(map1)
 head(map2)
 ```
 
-We need to reformat these maps to have an expected input: 2 columns called V1 (item name) and V2 (item position)
+We need to reformat these maps to have a valid input for LCSLCIS: 2 columns called V1 (item name) and V2 (item position)
 
 ``` r
 o1 <- map1 %>% filter(V0=="1A") %>% select(V1, V2) %>% arrange(V2)
@@ -116,25 +160,23 @@ Let's have a look to the common items relationship:
 show_connection(o1, o2, showName=FALSE)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
-Let's run LCIS to keep a subset of markers with no discrepencies:
+Let's run LCIS to keep THE LARGEST subset of markers with no discrepencies:
 
 ``` r
 res <- LCIS(o1,o2)
 show_connection(o1, o2, tokeep=res$LCIS, showName=FALSE)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-13-1.png)
 
-Citing
-------
+<br> \#\# Citing
 
 If you find LCSLCSI useful, please cite:
-*Longest Common Subsequence of Bucket Order: Application to Genetic Map Comparison (In Press)*
+*Longest Common Subsequence of Bucket Order: Application to Genetic Map Comparison (Submitted)*
 
-Authors
--------
+<br> \#\# Authors
 
 Lisa De Mattéo: [linkedin](https://www.linkedin.com/in/lisadematteo/)
 Vincent Ranwez: [homepage](https://sites.google.com/site/ranwez/)

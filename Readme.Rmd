@@ -51,8 +51,7 @@ o2 <- data.frame(
 
 The LCSLCIS package provides a `show_connection` function that allows to visualize the relationship between these 2 lists:
 ```{r}
-library(tidyr)
-library(ggplot2)
+library(tidyverse)
 library(ggrepel)
 show_connection(o1, o2)
 ```
@@ -75,6 +74,11 @@ res$LCS
 - It is straigth forward to plot only the items of the LCS:
 ```{r}
 show_connection(o1, o2, tokeep=res$LCS)
+```
+
+- You can also draw items that are part of the LCS in grey, and other in red:
+```{r}
+show_connection(o1, o2, highlight =res$LCS)
 ```
 
 <br>
@@ -106,65 +110,15 @@ Let's run LCIS to keep THE LARGEST subset of markers with no discrepencies:
 ```{r}
 res <- LCIS(o1,o2)
 show_connection(o1, o2, tokeep=res$LCIS, showName=FALSE)
-show_connection(o1, o2, highlight=res$LCIS, showName=FALSE)
 ```
 
-```{r}
-
-show_connection <- function(o1, o2, tokeep=NA, showName=FALSE, highlight=res$LCIS){
-  
-  # Prepare the data: merge the 2 lists and make a 'long' or 'tidy' format:
-  don <- merge(o1, o2, by.x="V1", by.y="V1", all=T) %>%
-    rename(name=V1, order1=V2.x, order2=V2.y) %>%
-    gather(ord, position, -1) %>%
-    na.omit()
-  
-  # Keep only a sample of the elements if the tokeep option is activated:
-  if( all(is.na(tokeep))==FALSE ){ don <- don %>% filter(name %in% tokeep) }
-  
-  # Make the plot
-  p <- ggplot( don, aes(x=ord, y=position, label=name, group=name, color=name))
-
-  # If user want to highlight a few connection, I do:
-  if( !is.na(highlight) ){
-    don$mycolor <- ifelse( don$name %in% highlight, "part of LCS", "excluded of LCS")
-    p <- ggplot( don, aes(x=ord, y=position, label=name, group=name, color=mycolor)) +
-        scale_color_manual(values=c("red", "grey"))
-  }
-
-  p <- p +
-    geom_segment( x=1, xend=1, y=-max(o1$V2), yend=0, color="black", size=0.3) +
-    geom_segment( x=2, xend=2, y=-max(o2$V2), yend=0, color="black", size=0.3) +
-    geom_point() +
-    geom_line() +
-    theme_void() +
-    theme(legend.position="none") +
-    xlab("") +
-    ylim( max(c(o1$V2, o2$V2)), 0)
-
-  # Add item names
-  if(showName==TRUE){
-    p <- p +
-        geom_text_repel( data=don %>% filter(ord=="order1"), direction = "y" , segment.color = "grey", box.padding = 0.001, color="black", xlim=c(0,.95)) +
-        geom_text_repel( data=don %>% filter(ord=="order2"), direction = "y" , segment.color = "grey", box.padding = 0.001, color="black", xlim=c(2.05,NA))
-  }
-    
-  p
-  
-}
-
-```
-
-
-
-
-
+<br>
 ## Citing
 
 If you find LCSLCSI useful, please cite:   
 *Longest Common Subsequence of Bucket Order: Application to Genetic Map Comparison (Submitted)*
 
-
+<br>
 ## Authors
 
 Lisa De Mattéo: [linkedin](https://www.linkedin.com/in/lisadematteo/)  
