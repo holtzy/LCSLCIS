@@ -50,7 +50,7 @@ o2 <- data.frame(
 ```
 
 The LCSLCIS package provides a `show_connection` function that allows to visualize the relationship between these 2 lists:
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(ggrepel)
 show_connection(o1, o2)
@@ -113,12 +113,14 @@ show_connection(o1, o2, tokeep=res$LCIS, showName=FALSE)
 ```
 
 <br>
+
 ## Citing
 
 If you find LCSLCSI useful, please cite:   
 *Longest Common Subsequence of Bucket Order: Application to Genetic Map Comparison (Submitted)*
 
 <br>
+
 ## Authors
 
 Lisa De Mattéo: [linkedin](https://www.linkedin.com/in/lisadematteo/)  

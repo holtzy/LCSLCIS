@@ -49,38 +49,7 @@ The LCSLCIS package provides a `show_connection` function that allows to visuali
 
 ``` r
 library(tidyverse)
-```
-
-    ## Warning: package 'tidyverse' was built under R version 3.4.2
-
-    ## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
-
-    ## ✔ ggplot2 2.2.1.9000     ✔ purrr   0.2.4     
-    ## ✔ tibble  1.4.2          ✔ dplyr   0.7.4     
-    ## ✔ tidyr   0.7.2          ✔ stringr 1.3.0     
-    ## ✔ readr   1.1.1          ✔ forcats 0.2.0
-
-    ## Warning: package 'tibble' was built under R version 3.4.3
-
-    ## Warning: package 'tidyr' was built under R version 3.4.2
-
-    ## Warning: package 'purrr' was built under R version 3.4.2
-
-    ## Warning: package 'dplyr' was built under R version 3.4.2
-
-    ## Warning: package 'stringr' was built under R version 3.4.3
-
-    ## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-
-``` r
 library(ggrepel)
-```
-
-    ## Warning: package 'ggrepel' was built under R version 3.4.2
-
-``` r
 show_connection(o1, o2)
 ```
 
@@ -171,12 +140,18 @@ show_connection(o1, o2, tokeep=res$LCIS, showName=FALSE)
 
 ![](README_files/figure-markdown_github/unnamed-chunk-13-1.png)
 
-<br> \#\# Citing
+<br>
+
+Citing
+------
 
 If you find LCSLCSI useful, please cite:
 *Longest Common Subsequence of Bucket Order: Application to Genetic Map Comparison (Submitted)*
 
-<br> \#\# Authors
+<br>
+
+Authors
+-------
 
 Lisa De Mattéo: [linkedin](https://www.linkedin.com/in/lisadematteo/)
 Vincent Ranwez: [homepage](https://sites.google.com/site/ranwez/)
