@@ -4,7 +4,7 @@
 \alias{show_connection}
 \title{A function to draw the relationship between 2 lists}
 \usage{
-show_connection(o1, o2, tokeep = NA, showName = TRUE)
+show_connection(o1, o2, tokeep = NA, showName = TRUE, highlight = NA)
 }
 \arguments{
 \item{o1}{the first list. Must be 2 columns called V1 and V2. V1 being the name
@@ -18,6 +18,9 @@ will be discarded. By default, all markers are kept.}
 
 \item{showName}{wether or not you want to show item names on the graphic.If you're working
 with a huge number of item, you probably don't want to show them}
+
+\item{highlight}{by default each connection is represented with a specific color. This option
+allows to plot every connection in grey, except connection betwwen a specific set of markers.}
 }
 \description{
 This function takes 2 lists o1 and o2 and build a diagram showing the relationship between every items.
