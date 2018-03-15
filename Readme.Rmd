@@ -81,6 +81,7 @@ show_connection(o1, o2, tokeep=res$LCS)
 show_connection(o1, o2, highlight =res$LCS)
 ```
 
+
 <br>
 
 ## Applying to genetic maps
