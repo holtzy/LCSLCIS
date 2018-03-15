@@ -67,8 +67,8 @@ show_connection <- function(o1, o2, tokeep=NA, showName=TRUE, highlight=NA){
   # Add item names
   if(showName==TRUE){
     p <- p +
-        geom_text_repel( data=don %>% filter(ord=="order1"), direction = "y" , segment.color = "grey", box.padding = 0.001, color="black", xlim=c(0,.95)) +
-        geom_text_repel( data=don %>% filter(ord=="order2"), direction = "y" , segment.color = "grey", box.padding = 0.001, color="black", xlim=c(2.05,NA))
+        geom_text_repel( data=don %>% filter(ord=="order1"), direction = "y" , segment.color = "grey", box.padding = unit(0.001, "lines"), color="black", xlim=c(0,.95)) +
+        geom_text_repel( data=don %>% filter(ord=="order2"), direction = "y" , segment.color = "grey", box.padding = unit(0.001, "lines"), color="black", xlim=c(2.05,NA))
   }
     
   p
