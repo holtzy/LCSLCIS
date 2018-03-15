@@ -1,14 +1,13 @@
 Package: LCSLCIS
 Type: Package
-Title: What the Package Does in One 'Title Case' Line
+Title: finding the longest common subsequence
 Version: 1.0
 Date: 2018-03-13
 Author: Lisa de Mattéo
 Maintainer: Lisa de Mattéo <dematteo@openmailbox.org>
-Description: One paragraph description of what the package does as one
-        or more full sentences.
+Description: takes 2 lists of items, with one position per item, and find the longest common subsequence.
 License: GPL (>= 2)
 Imports: Rcpp (>= 0.12.15)
 LinkingTo: Rcpp
 RoxygenNote: 6.0.1.9000
-Depends: tidyverse, ggrepel
+Depends: ggplot2, dplyr, ggrepel, Rcpp
