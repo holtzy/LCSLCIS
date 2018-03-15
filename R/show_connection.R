@@ -48,7 +48,7 @@ show_connection <- function(o1, o2, tokeep=NA, showName=TRUE, highlight=NA){
   p <- ggplot( don, aes(x=ord, y=position, label=name, group=name, color=name))
 
   # If user want to highlight a few connection, I do:
-  if( !is.na(highlight) ){
+  if( all(!is.na(highlight)) ){
     don$mycolor <- ifelse( don$name %in% highlight, "part of LCS", "excluded of LCS")
     p <- ggplot( don, aes(x=ord, y=position, label=name, group=name, color=mycolor)) +
         scale_color_manual(values=c("red", "black"))
