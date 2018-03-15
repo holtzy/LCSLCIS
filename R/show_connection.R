@@ -9,6 +9,8 @@
 #' will be discarded. By default, all markers are kept.
 #' @param showName wether or not you want to show item names on the graphic.If you're working
 #' with a huge number of item, you probably don't want to show them
+#' @param highlight by default each connection is represented with a specific color. This option
+#' allows to plot every connection in grey, except connection betwwen a specific set of markers.
 #' @keywords plot connection list
 #' @author Lisa de Matteo
 #' @export
@@ -31,7 +33,7 @@
 #' show_connection(o1, o2, tokeep=res$LCS)
 
 # A function that plot the relationship between 2 lists:
-show_connection <- function(o1, o2, tokeep=NA, showName=TRUE){
+show_connection <- function(o1, o2, tokeep=NA, showName=TRUE, highlight=NA){
   
   # Prepare the data: merge the 2 lists and make a 'long' or 'tidy' format:
   don <- merge(o1, o2, by.x="V1", by.y="V1", all=T) %>%
@@ -39,11 +41,20 @@ show_connection <- function(o1, o2, tokeep=NA, showName=TRUE){
     gather(ord, position, -1) %>%
     na.omit()
   
-  # Keep only a sample of the elements:
+  # Keep only a sample of the elements if the tokeep option is activated:
   if( all(is.na(tokeep))==FALSE ){ don <- don %>% filter(name %in% tokeep) }
   
   # Make the plot
-  p <- ggplot( don, aes(x=ord, y=position, label=name, group=name, color=name)) +
+  p <- ggplot( don, aes(x=ord, y=position, label=name, group=name, color=name))
+
+  # If user want to highlight a few connection, I do:
+  if( !is.na(highlight) ){
+    don$mycolor <- ifelse( don$name %in% highlight, "part of LCS", "excluded of LCS")
+    p <- ggplot( don, aes(x=ord, y=position, label=name, group=name, color=mycolor)) +
+        scale_color_manual(values=c("red", "black"))
+  }
+
+  p <- p +
     geom_segment( x=1, xend=1, y=-max(o1$V2), yend=0, color="black", size=0.3) +
     geom_segment( x=2, xend=2, y=-max(o2$V2), yend=0, color="black", size=0.3) +
     geom_point() +
@@ -61,6 +72,7 @@ show_connection <- function(o1, o2, tokeep=NA, showName=TRUE){
   }
     
   p
+  
 }
 
 

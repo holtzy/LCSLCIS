@@ -37,7 +37,7 @@ library(LCSLCIS)
 <br>
 
 ## Basic example
-Let's consider 2 lists of items: o1 and o2. Each item has a specific position in each list. Several items can have the same position. 
+We represent marker order along a chromosome by two lists, the first list provides the marker names and the second their position along the chromosome. Let’s consider two marker orders o1 and o2
 ```{r}
 o1 <- data.frame( 
 	V1=c("g","h","c","f","e","d","m","q","r","a","b","n","o","p"), 
@@ -51,6 +51,9 @@ o2 <- data.frame(
 
 The LCSLCIS package provides a `show_connection` function that allows to visualize the relationship between these 2 lists:
 ```{r}
+library(tidyr)
+library(ggplot2)
+library(ggrepel)
 show_connection(o1, o2)
 ```
 
@@ -61,7 +64,7 @@ res <- LCS(o1,o2)
 
 The `LCS` function returns a list. Several outputs are of interest:
 
-- `res$LLCS` is the number of items in the LCS:
+- `res$LLCS` is the length of the returned LCS
 ```{r}
 res$LLCS
 ```
@@ -77,7 +80,7 @@ show_connection(o1, o2, tokeep=res$LCS)
 <br>
 
 ## Applying to genetic maps
-The LCSLCIS library provides 2 genetic maps of wheat as toy example. Load it with:
+The LCSLCIS library provides 2 genetic maps of wheat (format chromosome, marker name, position) as toy example. Load THEM using:
 ```{r}
 data(geneticMap)
 ```
@@ -88,7 +91,7 @@ head(map1)
 head(map2)
 ```
 
-We need to reformat these maps to have an expected input: 2 columns called V1 (item name) and V2 (item position)
+We need to reformat these maps to have a valid input for LCSLCIS: 2 columns called V1 (item name) and V2 (item position)
 ```{r}
 o1 <- map1 %>% filter(V0=="1A") %>% select(V1, V2) %>% arrange(V2)
 o2 <- map2 %>% filter(V0=="1A") %>% select(V1, V2) %>% arrange(V2)
@@ -99,17 +102,67 @@ Let's have a look to the common items relationship:
 show_connection(o1, o2, showName=FALSE)
 ```
 
-Let's run LCIS to keep a subset of markers with no discrepencies:
+Let's run LCIS to keep THE LARGEST subset of markers with no discrepencies:
 ```{r}
 res <- LCIS(o1,o2)
 show_connection(o1, o2, tokeep=res$LCIS, showName=FALSE)
+show_connection(o1, o2, highlight=res$LCIS, showName=FALSE)
 ```
+
+```{r}
+
+show_connection <- function(o1, o2, tokeep=NA, showName=FALSE, highlight=res$LCIS){
+  
+  # Prepare the data: merge the 2 lists and make a 'long' or 'tidy' format:
+  don <- merge(o1, o2, by.x="V1", by.y="V1", all=T) %>%
+    rename(name=V1, order1=V2.x, order2=V2.y) %>%
+    gather(ord, position, -1) %>%
+    na.omit()
+  
+  # Keep only a sample of the elements if the tokeep option is activated:
+  if( all(is.na(tokeep))==FALSE ){ don <- don %>% filter(name %in% tokeep) }
+  
+  # Make the plot
+  p <- ggplot( don, aes(x=ord, y=position, label=name, group=name, color=name))
+
+  # If user want to highlight a few connection, I do:
+  if( !is.na(highlight) ){
+    don$mycolor <- ifelse( don$name %in% highlight, "part of LCS", "excluded of LCS")
+    p <- ggplot( don, aes(x=ord, y=position, label=name, group=name, color=mycolor)) +
+        scale_color_manual(values=c("red", "grey"))
+  }
+
+  p <- p +
+    geom_segment( x=1, xend=1, y=-max(o1$V2), yend=0, color="black", size=0.3) +
+    geom_segment( x=2, xend=2, y=-max(o2$V2), yend=0, color="black", size=0.3) +
+    geom_point() +
+    geom_line() +
+    theme_void() +
+    theme(legend.position="none") +
+    xlab("") +
+    ylim( max(c(o1$V2, o2$V2)), 0)
+
+  # Add item names
+  if(showName==TRUE){
+    p <- p +
+        geom_text_repel( data=don %>% filter(ord=="order1"), direction = "y" , segment.color = "grey", box.padding = 0.001, color="black", xlim=c(0,.95)) +
+        geom_text_repel( data=don %>% filter(ord=="order2"), direction = "y" , segment.color = "grey", box.padding = 0.001, color="black", xlim=c(2.05,NA))
+  }
+    
+  p
+  
+}
+
+```
+
+
+
 
 
 ## Citing
 
 If you find LCSLCSI useful, please cite:   
-*Longest Common Subsequence of Bucket Order: Application to Genetic Map Comparison (In Press)*
+*Longest Common Subsequence of Bucket Order: Application to Genetic Map Comparison (Submitted)*
 
 
 ## Authors
