@@ -93,9 +93,6 @@ show_connection(o1, o2, tokeep=res$LCS)
 show_connection(o1, o2, highlight =res$LCS)
 ```
 
-    ## Warning in if (!is.na(highlight)) {: the condition has length > 1 and only
-    ## the first element will be used
-
 ![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 <br>
