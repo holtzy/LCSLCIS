@@ -1,13 +1,13 @@
 # Note on the creation of the package.	
 # I’ve got a c++ script and transform it in an R library following these steps:
-
 # Ref:
 # https://stackoverflow.com/questions/36856270/using-roxygen2-for-r-functions-in-an-r-package-containing-r-cpp-code
 
 
-# —- Step 1: create a LCSLCIS folder and go into it
+# —- Step -- create a LCSLCIS folder and go into it
 
-# —- Step 2: create a skeleton of package base on Rcpp. Note that to do so I need the LCS.cpp file transferred by Vincent in a DropBox.
+
+# —- Step -- create a skeleton of package base on Rcpp. Note that to do so I need the LCS.cpp file transferred by Vincent in a DropBox.
 library(Rcpp)
 Rcpp.package.skeleton(name = "LCSLCIS", list = character(), 
 	environment = .GlobalEnv, path = ".", force = FALSE, 
@@ -18,38 +18,47 @@ Rcpp.package.skeleton(name = "LCSLCIS", list = character(),
 	email = "dematteo@openmailbox.org"
 	)
 
-# —- Step 3: In the file src/LCS.cpp add comments in an Roxygen format. It will build the documentation. It goes just before
+
+# —- Step -- In the file src/LCS.cpp add comments in an Roxygen format. It will build the documentation. It goes just before
 # // [[Rcpp::export]]
 # List LCS(DataFrame order_1, DataFrame order_2){
 
 
-# —- Step 4: do the C++ -> R bindings:
+# —- Step -- do the C++ -> R bindings:
 setwd(“./LCSLCIS”)
 library(Rcpp)
 compileAttributes()
 
 
-# —- Step 4 bis: add the show_connection function in the file R/show_connection.R, with the R oxygen documentation
+# —- Step -- add the show_connection function in the file R/show_connection.R, with the R oxygen documentation
 
-# —- Step: Add dependencies of the package: I need the tidyverse to realise the figures. At the end of the DESCRIPTION file, add:
-Depends: tidyverse, ggrepel
 
-# —- Step 5: Create the doc with ROxygen2
+# —- Step -- Add dependencies of the package: I need the tidyverse to realise the figures. At the end of the DESCRIPTION file, add:
+# This step breaks the installation --> I do not add dependencies
+
+
+# —- Step -- Create the doc with ROxygen2
 library(roxygen2)
 roxygenize()
 
-# —- Step 6: Install the package:
+
+# —- Step -- Remove all the .o and .so files in the src folder.
+
+
+# —- Step -- Install the package:
 library(devtools)
 setwd("..")
 install("LCSLCIS")
 
-# —- Step 7: Test the library
+
+# —- Step -- Test the library
 library(LCSLCIS)
 help(LCS)
 help(show_connection)
 
 
 # —- Step 8: Send it on GitHub, the library is ready
+
 
 # —- Step 9:
 	- add the readme, it replaces the vignette.

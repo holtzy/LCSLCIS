@@ -1,21 +1,16 @@
-#' A function to draw the relationship between 2 lists
+#' A function to draw the relationship between 2 (bucket) orders
 #'
-#' This function takes 2 lists o1 and o2 and build a diagram showing the relationship between every items.
-#' @param o1 the first list. Must be 2 columns called V1 and V2. V1 being the name
-#' of the item, V2 its position
-#' @param o2 the second list. Must be 2 columns called V1 and V2. V1 being the name
-#' of the item, V2 its position
-#' @param tokeep a vector of item to keep on the graphic. All item not present in this list
-#' will be discarded. By default, all markers are kept.
-#' @param showName wether or not you want to show item names on the graphic.If you're working
-#' with a huge number of item, you probably don't want to show them
-#' @param highlight by default each connection is represented with a specific color. This option
-#' allows to plot every connection in grey, except connection betwwen a specific set of markers.
-#' @keywords plot connection list
-#' @author Lisa de Matteo
+#' This function takes 2 marker orders o1 and o2 and build a diagram to ease their comparison. The two orders are represented by two parallel vertical lines, and marker are positoned along those lines based on their positions within o1 and o2. Every time a marker is present in both o1 and o2 (same name) a new line is drawn between: the position of this marker on the vertical line representing o1 and its position on o2 (by default a different color is used for each marker).
+#' @param o1 the first order, provided as a dataframe made of two columns named V1 and V2; V1 contains marker names while V2 contains their position
+#' @param o2 the second order, provided as a dataframe made of two columns named V1 and V2; V1 contains marker names while V2 contains their position
+#' @param tokeep a vector containg the names of the markers to be kept for this graphic, other markers are disgarded. By default, all markers are kept.
+#' @param showName a boolean indicating wether or not marker names should be displayed (for large datasets displaying marker names often result in overly cluttered charts)
+#' @param highlight a vector containg the names of the markers to be highlight for this graphic. The lines linking those markers will be drawn in dark grey, while other (e.g. those not part of the LCS) will be drawn in red instead of being masked as with the tokeep option.
+#' @keywords connection list plot
+#' @author Yan Holtz, Lisa de Matteo, Vincent Ranwez, Severine Berard
 #' @export
 #' @examples
-#' # Create 2 lists
+#' # create 2 orders of markers. Each order is represented by a dataframe made of two columns, the first (V1) contains marker names (e.g, a, e, f) the second (V2) contains marker position in this order (e.g 1.1, 5, 6.7, 8) 
 #' o1 <- data.frame( 
 #'    V1=c("g","h","c","f","e","d","m","q","r","a","b","n","o","p"), 
 #'    V2=c(1.1,1.1,3.4,3.4,3.4,3.4,3.5,3.5,6.6,6.6,7.2,7.2,8,8)
@@ -24,13 +19,14 @@
 #'    V1=c("k","a","b","l","c","e","d","f","i","j","h","g"), 
 #'    V2=c(0.1,1.2,1.2,4.2,4.2,5,5,5,5.3,5.3,6.7,6.7)
 #'    )
-#'
-#' # show the connection between all items
+#' 
+#' # show the connection between the markers of o1 and o2
 #' show_connection(o1,o2)
-#'
-#' # Run LCS and plot only the remaining markers
+#' 
+#' # Run LCS and plot only the connection between o1 and o2 for their LCS markers (tokeep=res$LCS) or higlight those connections (highlight=res$LCS)
 #' res <- LCS(o1,o2)
 #' show_connection(o1, o2, tokeep=res$LCS)
+#' show_connection(o1, o2, highlight =res$LCS)
 
 # A function that plot the relationship between 2 lists:
 show_connection <- function(o1, o2, tokeep=NA, showName=TRUE, highlight=NA){

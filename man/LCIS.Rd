@@ -7,32 +7,30 @@
 LCIS(order_1, order_2)
 }
 \arguments{
-\item{order_1}{the first list. Must be 2 columns called V1 and V2. V1 being the name
-of the item, V2 its position}
+\item{order_1}{the first order, provided as a dataframe made of two columns named V1 and V2; V1 contains marker names while V2 contains their position.}
 
-\item{order_2}{the second list. Must be 2 columns called V1 and V2. V1 being the name
-of the item, V2 its position}
+\item{order_2}{the second order, provided as a dataframe made of two columns named V1 and V2; V1 contains marker names while V2 contains their position.}
 }
 \value{
-The function returns a list with several informations:
-		- $order_1: the first list
-		- $order_2: the second list
-		- $LLCIS: the number of items in the longuest common sequence
-		- $LCIS: the item names in the longuest common sequence
-		- $QSI: an estimate of the proportion of items kept in the LCS
-		- $LCIS_pos_order_1: the position of kept items in the first list
-		- $LCIS_pos_order_2: the position of kept items in the second list
+The LCIS function returns a list made of:
+	- $order_1: the first input order
+	- $order_2: the second input order
+	- $LLCIS: the length of the longest common induced sequence
+	- $LCIS: the longuest common induced sequence (list of its marker names)
+	- $QSI: an estimate of the proportion of items kept in the LCIS
+	- $LCIS_pos_order_1: the position of LCIS markers in $order_1$
+	- $LCIS_pos_order_2: the position of LCIS markers in $order_2$
 }
 \description{
-Find the Longuest Common Induced Sequence (LCIS) between 2 lists.
+Find the Longuest Common Induced Sequence (LCIS) of two (bucket) orders.
 }
 \details{
-The LCS function takes 2 list of items and return the biggest subset of items
-showing the same order. If several items are at the same position, only one will
-be kept per position.
+The LCIS function takes 2 orders of overlaping set of markers as input and returns one of their longest commnon induced subsequence (LCIS) of markers. More formally, this LCIS=($m_1$, $m_2$,...,$m_i$, ..., $m_j$, ...$m_k$), is such that $m_i$ precedes $m_j$ if, and only, if i) $m_i$ precedes $m_j$ in order_1 or in order_2 ii) $m_j$ does not precedes $m_i$ in neither order_1 nor order_2, and iii) there is no longer sequence of markers satisfying properties i) and ii). 
+In other words, any ordering information of the LCIS is thus induced by those of the input orders (hence its name, see also LCS help) and contracted by none of the input orders.
 }
 \examples{
-# create 2 lists of items, each item having a position
+# create 2 orders of markers. Each order is represented by a dataframe made of two columns, the first (V1) 
+# contains marker names (e.g, a, e, f) the second (V2) contains marker position in this order (e.g 1.1, 5, 6.7, 8) 
 o1 <- data.frame( 
    	V1=c("g","h","c","f","e","d","m","q","r","a","b","n","o","p"), 
    	V2=c(1.1,1.1,3.4,3.4,3.4,3.4,3.5,3.5,6.6,6.6,7.2,7.2,8,8)
@@ -45,5 +43,5 @@ o2 <- data.frame(
 LCIS(o1, o2)
 }
 \author{
-Lisa de Matteo
+Lisa de Matteo, Yan Holtz, Vincent Ranwez, Severine Berard
 }
