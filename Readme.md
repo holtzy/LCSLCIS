@@ -1,5 +1,5 @@
 [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.2.4-6666ff.svg)](https://cran.r-project.org/) [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/develop) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--15-yellowgreen.svg)](/commits/master)
+[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.2.4-6666ff.svg)](https://cran.r-project.org/) [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/develop) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--17-yellowgreen.svg)](/commits/master)
 
 LCSLCIS
 -------
@@ -53,7 +53,7 @@ library(ggrepel)
 show_connection(o1, o2)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](Readme_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
 We can find the Longest Common Subsequences (LCS) of bucket orders to produce a strict consensus list. This is done running the `LCS` function of the package:
 
@@ -85,7 +85,7 @@ res$LCS
 show_connection(o1, o2, tokeep=res$LCS)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](Readme_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 -   You can also draw items that are part of the LCS in grey, and other in red:
 
@@ -93,7 +93,7 @@ show_connection(o1, o2, tokeep=res$LCS)
 show_connection(o1, o2, highlight =res$LCS)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](Readme_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
 <br>
 
@@ -126,7 +126,7 @@ Let's have a look to the common items relationship:
 show_connection(o1, o2, showName=FALSE)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](Readme_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
 Let's run LCIS to keep THE LARGEST subset of markers with no discrepencies:
 
@@ -135,9 +135,16 @@ res <- LCIS(o1,o2)
 show_connection(o1, o2, tokeep=res$LCIS, showName=FALSE)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-13-1.png)
+![](Readme_files/figure-markdown_github/unnamed-chunk-13-1.png)
 
 <br>
+
+A note on speed
+---------------
+
+We compared the LCSLCSI packages with the LCS function of the [qualV package](https://github.com/cran/qualV/blob/master/R/LCS.R) that performs a similar job. Computation time was compared for several list lengths ([see script](https://github.com/holtzy/LCSLCIS/blob/master/speed_test/comparing_speed.R)). LCSLCSI is faster than qualV as described on the chart below:
+
+![time](speed_test/speed_test_result.png)
 
 Citing
 ------
