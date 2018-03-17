@@ -66,14 +66,15 @@ result %>%
   ggplot( aes(x=n, y=time, color=algo)) +
     geom_line() +
     geom_point() +
-    xlab("# of items in o1 and o2") +
+    xlab("# of items") +
     ylab("time ellapsed")
 dev.off()
 
 # Show result
-result
+write.table(result, file="speed_test_result.csv", sep=",", row.names=FALSE)
 
-
+# Key number, with 12800 markers, LCSLCIS is x time faster. x= 21
+result$qualV[8] /  result$LCSLCIS[8]
 
 
 

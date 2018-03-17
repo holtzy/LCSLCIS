@@ -26,22 +26,22 @@ The LCS function returns a list made of:
 Find the Longuest Common Subsequence (LCS) of two (bucket) orders.
 }
 \details{
-The LCS function takes 2 orders of overlaping set of markers as input and returns one of their longest commnon subsequence (LCS) of markers. More formally, this LCS=($m_1$, $m_2$,...,$m_i$, ..., $m_j$, ...$m_k$), is such that $m_i$ precedes $m_j$ if, and only, if i) $m_j$ does not precedes $m_i$ in neither order_1 or in order_2  and ii) there is no longer sequence of markers satisfyingproperty i). 
-In other words, any ordering information of the LCS is contradicted by none of the input order (but not necesseraly induced by them, in case of tie an arbitrary ordering of the markers is returned by the LCS as opposed to  the LCIS that kept only one of those markers).
+The LCS function takes 2 orders of overlaping set of markers as input and returns one of their longest commnon subsequence (LCS) of markers. More formally, this LCS=(m_1, m_2, ..., m_i, ..., m_j, ...m_k), is such that m_i precedes m_j if, and only, if i) m_j does not precede m_i in neither order_1 or in order_2  and ii) there is no longer sequence of markers satisfying property i). 
+In other words, any ordering information of the LCS is contradicted by none of the input order (but not necessarily induced by them, in case of tie an arbitrary ordering of the markers is returned by the LCS as opposed to  the LCIS that kept only one of those markers).
 }
 \examples{
 # create 2 orders of markers. Each order is represented by a dataframe made of two columns, the first (V1) contains marker names (e.g, a, e, f) the 
 # second (V2) contains marker position in this order (e.g 1.1, 5, 6.7, 8) 
-o1 <- data.frame( 
+order_1 <- data.frame( 
    	V1=c("g","h","c","f","e","d","m","q","r","a","b","n","o","p"), 
    	V2=c(1.1,1.1,3.4,3.4,3.4,3.4,3.5,3.5,6.6,6.6,7.2,7.2,8,8)
    )
-o2 <- data.frame( 
+order_2 <- data.frame( 
 	V1=c("k","a","b","l","c","e","d","f","i","j","h","g"), 
    	V2=c(0.1,1.2,1.2,4.2,4.2,5,5,5,5.3,5.3,6.7,6.7)
    )
 # run LCS
-LCS(o1, o2)
+LCS(order_1, order_2)
 }
 \author{
 Lisa de Matteo, Yan Holtz, Vincent Ranwez, Severine Berard
