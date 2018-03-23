@@ -8,8 +8,8 @@
 #'
 #'
 #' @title Longuest Common Sequence (LCS)
-#' @param order_1 the first order, provided as a dataframe made of two columns named V1 and V2; V1 contains marker names while V2 contains their position.
-#' @param order_2 the second order, provided as a dataframe made of two columns named V1 and V2; V1 contains marker names while V2 contains their position.
+#' @param order_1 the first order, provided as a dataframe made of two columns named V1 and V2; V1 contains marker names while V2 contains their position. Markers should be provided in increasing V2 values.
+#' @param order_2 the second order, provided as a dataframe made of two columns named V1 and V2; V1 contains marker names while V2 contains their position. Markers should be provided in increasing V2 values.
 #' of the item, V2 its position
 #' @return The LCS function returns a list made of:
 #'			- $order_1: the first input order
@@ -43,8 +43,8 @@ LCS <- function(order_1, order_2) {
 #' In other words, any ordering information of the LCIS is thus induced by those of the input orders (hence its name, see also LCS help) and contracted by none of the input orders.
 #'
 #' @title Longuest Common Induced qSequence (LCIS)
-#' @param order_1 the first order, provided as a dataframe made of two columns named V1 and V2; V1 contains marker names while V2 contains their position.
-#' @param order_2 the second order, provided as a dataframe made of two columns named V1 and V2; V1 contains marker names while V2 contains their position.
+#' @param order_1 the first order, provided as a dataframe made of two columns named V1 and V2; V1 contains marker names while V2 contains their position. Markers should be provided in increasing V2 values.
+#' @param order_2 the second order, provided as a dataframe made of two columns named V1 and V2; V1 contains marker names while V2 contains their position. Markers should be provided in increasing V2 values.
 #' @return The LCIS function returns a list made of:
 #'		- $order_1: the first input order
 #'		- $order_2: the second input order
