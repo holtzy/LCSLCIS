@@ -142,7 +142,7 @@ show_connection(o1, o2, tokeep=res$LCIS, showName=FALSE)
 A note on speed
 ---------------
 
-We compared the LCSLCSI packages with the LCS function of the [qualV package](https://github.com/cran/qualV/blob/master/R/LCS.R) that performs a similar job. Computation time was compared for several list lengths ([see script](https://github.com/holtzy/LCSLCIS/blob/master/speed_test/comparing_speed.R)). LCSLCSI is faster than qualV as described on the chart below:
+We compared the LCSLCSI packages with the LCS function of the [qualV package](https://github.com/cran/qualV/blob/master/R/LCS.R) that performs a similar job. Computation time was compared for several list lengths ([see script](https://github.com/holtzy/LCSLCIS/blob/master/speed_test/comparing_result_and_speed.R). LCSLCSI is faster than qualV as described on the chart below:
 
 ![time](speed_test/speed_test_result.png)
 
