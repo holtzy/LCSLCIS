@@ -158,5 +158,5 @@ Authors
 -------
 
 Lisa De Mattéo: [linkedin](https://www.linkedin.com/in/lisadematteo/)
-Vincent Ranwez: [homepage](https://sites.google.com/site/ranwez/) | <vincent.ranwez@supagro.fr> | corresponding author
-Sèverine Bérard: [homepage](http://www.pages-perso-severine-berard.univ-montp2.fr) | <Severine.Berard@umontpellier.fr>
+<br> Vincent Ranwez: [homepage](https://sites.google.com/site/ranwez/) | <vincent.ranwez@supagro.fr> | corresponding author
+<br> Sèverine Bérard: [homepage](http://www.pages-perso-severine-berard.univ-montp2.fr) | <Severine.Berard@umontpellier.fr>
