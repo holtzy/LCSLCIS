@@ -1,5 +1,5 @@
 [![Project Status: Active The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.2.4-6666ff.svg)](https://cran.r-project.org/) [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/develop) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--17-yellowgreen.svg)](/commits/master)
+[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.2.4-6666ff.svg)](https://cran.r-project.org/) [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/develop) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--24-yellowgreen.svg)](/commits/master)
 
 LCSLCIS
 -------
@@ -158,5 +158,5 @@ Authors
 -------
 
 Lisa De Mattéo: [linkedin](https://www.linkedin.com/in/lisadematteo/)
-Vincent Ranwez: [homepage](https://sites.google.com/site/ranwez/)
-Sèverine Bérard: [homepage](http://www.pages-perso-severine-berard.univ-montp2.fr)
+Vincent Ranwez: [homepage](https://sites.google.com/site/ranwez/) | <vincent.ranwez@supagro.fr> | corresponding author
+Sèverine Bérard: [homepage](http://www.pages-perso-severine-berard.univ-montp2.fr) | <Severine.Berard@umontpellier.fr>
