@@ -19,6 +19,7 @@
 #'			- $QSI: an estimate of the proportion of items kept in the LCS
 #'			- $LCS_pos_order_1: the position of LCS markers in $order_1$
 #'			- $LCS_pos_order_2: the position of LCS markers in $order_2$
+#'
 #' @author Lisa de Matteo, Yan Holtz, Vincent Ranwez, Severine Berard
 #' @examples
 #' # create 2 orders of markers. Each order is represented by a dataframe made of two columns, the first (V1) contains marker names (e.g, a, e, f) the 

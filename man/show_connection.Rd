@@ -19,7 +19,9 @@ show_connection(order_1, order_2, tokeep = NA, showName = TRUE,
 \item{highlight}{a vector containg the names of the markers to be highlight for this graphic. The lines linking those markers will be drawn in dark grey, while others (e.g. those not part of the LCS) will be drawn in red instead of being masked as with the tokeep option.}
 }
 \description{
-This function takes 2 marker orders order_1 and order_2 and build a diagram to ease their comparison. The two orders are represented by two parallel vertical lines, and marker are positoned along those lines based on their positions within order_1 and order_2. Every time a marker is present in both order_1 and order_2 (same name) a new line is drawn between: the position of this marker on the vertical line representing order_1 and its position on order_2 (by default a different color is used for each marker).
+This function takes 2 marker orders order_1 and order_2 and build a diagram to ease their comparison. 
+The two orders are represented by two parallel vertical lines, and marker are positoned along those lines based on their positions within order_1 and order_2. Every time a marker is present in both order_1 and order_2 (same name) a new line is drawn between: the position of this marker on the vertical line representing order_1 and its position on order_2 (by default a different color is used for each marker).
+This function requires the tidyverse and ggrepel packages.
 }
 \examples{
 # create 2 orders of markers. Each order is represented by a dataframe made of two columns, the first (V1) contains marker names (e.g, a, e, f) the second (V2) contains marker position in this order (e.g 1.1, 5, 6.7, 8) 
@@ -33,6 +35,8 @@ order_2 <- data.frame(
    )
 
 # show the connection between the markers of order_1 and order_2
+library(tidyverse)
+library(ggrepel)
 show_connection(order_1,order_2)
 
 # Run LCS and plot only the connection between order_1 and order_2 for their LCS markers (tokeep=res$LCS) or higlight those connections (highlight=res$LCS)

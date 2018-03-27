@@ -1,6 +1,8 @@
 #' A function to draw the relationship between 2 (bucket) orders
 #'
-#' This function takes 2 marker orders order_1 and order_2 and build a diagram to ease their comparison. The two orders are represented by two parallel vertical lines, and marker are positoned along those lines based on their positions within order_1 and order_2. Every time a marker is present in both order_1 and order_2 (same name) a new line is drawn between: the position of this marker on the vertical line representing order_1 and its position on order_2 (by default a different color is used for each marker).
+#' This function takes 2 marker orders order_1 and order_2 and build a diagram to ease their comparison. 
+#' The two orders are represented by two parallel vertical lines, and marker are positoned along those lines based on their positions within order_1 and order_2. Every time a marker is present in both order_1 and order_2 (same name) a new line is drawn between: the position of this marker on the vertical line representing order_1 and its position on order_2 (by default a different color is used for each marker).
+#' This function requires the tidyverse and ggrepel packages.
 #' @param order_1 the first order, provided as a dataframe made of two columns named V1 and V2; V1 contains marker names while V2 contains their position
 #' @param order_2 the second order, provided as a dataframe made of two columns named V1 and V2; V1 contains marker names while V2 contains their position
 #' @param tokeep a vector containg the names of the markers to be kept for this graphic, other markers are disgarded. By default, all markers are kept.
@@ -21,6 +23,8 @@
 #'    )
 #' 
 #' # show the connection between the markers of order_1 and order_2
+#' library(tidyverse)
+#' library(ggrepel)
 #' show_connection(order_1,order_2)
 #' 
 #' # Run LCS and plot only the connection between order_1 and order_2 for their LCS markers (tokeep=res$LCS) or higlight those connections (highlight=res$LCS)

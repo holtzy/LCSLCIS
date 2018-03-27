@@ -49,7 +49,7 @@ o2 <- data.frame(
 	)
 ```
 
-The LCSLCIS package provides a `show_connection` function that allows to visualize the relationship between these 2 lists:
+The LCSLCIS package provides a `show_connection` function that allows to visualize the relationship between these 2 lists. This graphical function requires the `tidyverse` and `ggrepel` packages.
 ```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(ggrepel)
