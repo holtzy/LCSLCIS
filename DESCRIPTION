@@ -3,8 +3,8 @@ Type: Package
 Title: finding the longest common subsequence
 Version: 1.0
 Date: 2018-03-13
-Author: Lisa de Mattéo
-Maintainer: Lisa de Mattéo <dematteo@openmailbox.org>
+Author: Lisa de Matteo
+Maintainer: Lisa de Matteo <dematteo@openmailbox.org>
 Description: takes 2 lists of items, with one position per item, and find the longest common subsequence.
 License: GPL (>= 2)
 Imports: Rcpp (>= 0.12.1)
