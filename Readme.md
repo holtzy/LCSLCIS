@@ -150,7 +150,7 @@ Citing
 ------
 
 If you find LCSLCSI useful, please cite:
-*Longest Common Subsequence of Bucket Order: Application to Genetic Map Comparison (Submitted)*
+Efficient algorithms for Longest Common Subsequence of two bucket orders to speed up pairwise genetic map comparison. L. De Mattéo, Y. Holtz, V. Ranwez and  S Bérard.  PLoS ONE (2018) 13(12): e0208838. [online version](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0208838)
 
 <br>
 
